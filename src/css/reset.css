@@ -1,0 +1,33 @@
+/*------ Reset styles ------*/
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  min-width: 100%;
+  height: 100vh;
+  color: var(--white);
+  font-family: "Poppins-Regular";
+  user-select: none;
+}
+a {
+  text-decoration: none;
+  color: var(--white);
+  -webkit-user-drag: none;
+}
+svg {
+  -webkit-user-drag: none;
+}
+img {
+  -webkit-user-drag: none;
+}
+li {
+  list-style: none;
+}
+svg {
+  outline: none;
+}

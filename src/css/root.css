@@ -1,0 +1,9 @@
+/*------ Root styles ------*/
+
+:root {
+  --white: #ffffff;
+  --dark-blue: #34495e;
+  --more-dark-blue: #2c3e50;
+  --very-dark-blue: #263341;
+  --light-green: #1abc9c;
+}

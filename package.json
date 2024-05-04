@@ -1,0 +1,49 @@
+{
+  "name": "laptop-tester",
+  "version": "1.0.0",
+  "description": "Application that diagnosis laptops",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder build --win --publish never",
+    "deploy": "electron-builder build --win --publish always"
+  },
+  "author": "Malick Tammal",
+  "license": "MIT",
+  "keywords": [
+    "Application",
+    "Diagnosis",
+    "Laptop",
+    "Tool"
+  ],
+  "devDependencies": {
+    "electron": "^23.2.0",
+    "electron-builder": "^24.1.2"
+  },
+  "dependencies": {
+    "battery": "^1.0.1",
+    "electron-localshortcut": "^3.2.1",
+    "electron-updater": "^5.3.0",
+    "jquery": "^3.6.4",
+    "systeminformation": "^5.17.12",
+    "v8-compile-cache": "^2.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Malick_Tammal/laptop-tester.git"
+  },
+  "build": {
+    "win": {
+      "target": "NSIS",
+      "icon": "asset/photos/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true,
+      "license": "./custom/license.html",
+      "include": "./custom/installer.nsh",
+      "installerSidebar": "./custom/customHeader.bmp"
+    }
+  }
+}
