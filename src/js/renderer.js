@@ -89,10 +89,10 @@ const video1 = document.querySelector(".video-1");
 const video2 = document.querySelector(".video-2");
 
 video1.addEventListener("click", () => {
-  ipc.send("start_video1");
+  shell.openExternal("https://www.youtube.com/watch?v=7PIji8OubXU&t=53s&ab_channel=8KEarth");
 });
 video2.addEventListener("click", () => {
-  ipc.send("start_video2");
+  shell.openExternal("https://www.youtube.com/watch?v=LXb3EKWsInQ&ab_channel=Jacob%2BKatieSchwarz");
 });
 
 /*------ Open links in browser ------*/

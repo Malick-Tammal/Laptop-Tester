@@ -69,7 +69,7 @@ const createMainWin = () => {
 
 /*------ Creating window when app started ------*/
 app.whenReady().then(() => {
-  createMainWindow();
+  createMainWin();
 });
 
 /*------ App quit functions------*/
@@ -98,41 +98,6 @@ ipc.on("get_fullscreen", () => {
 });
 ipc.on("restore_screen", () => {
   mainWin.setFullScreen(false);
-});
-
-/*------ New window for video ------*/
-let videoWindow;
-const createVideoWindow = () => {
-  videoWindow = new BrowserWindow({
-    fullscreen: true,
-    frame: false,
-    title: "Video 1",
-    icon: path.join(__dirname, "./asset/photos/icon.ico"),
-    webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false,
-      devTools: false,
-    },
-  });
-  /*------ Mem garbage collection ------*/
-  videoWindow.on("closed", () => {
-    videoWindow = null;
-  });
-};
-
-/*------ Opening video window when called from renderer process ------*/
-ipc.on("start_video1", () => {
-  createVideoWindow();
-  videoWindow.loadFile("./src/video-pages/video1.html");
-});
-ipc.on("start_video2", () => {
-  createVideoWindow();
-  videoWindow.loadFile("./src/video-pages/video2.html");
-});
-
-/*------ Closing video window ------*/
-ipc.on("exit_video", () => {
-  videoWindow.close();
 });
 
 /*------ Generating battery report ------*/
