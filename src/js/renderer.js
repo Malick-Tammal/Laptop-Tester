@@ -2,6 +2,10 @@
 const { ipcRenderer, shell } = require("electron");
 const ipc = ipcRenderer;
 
+document.addEventListener("DOMContentLoaded", () => {
+  ipc.send("get_data");
+});
+
 /*------ Adding close / minimize / maximize functions ------*/
 const closeBtn = document.querySelector(".close-btn");
 const minimizeBtn = document.querySelector(".minimize-btn");
@@ -18,10 +22,10 @@ maximizeBtn.addEventListener("click", () => {
 });
 
 /*------ Importing app name from main process ------*/
-const documentTitle = document.querySelector(".document-title");
+const domTitle = document.querySelector(".dom-title");
 const navTitle = document.querySelector(".logo h1");
 ipc.on("app_name", (event, data) => {
-  documentTitle.innerText = data.title;
+  domTitle.innerText = data.title;
   navTitle.innerText = data.title;
 });
 
@@ -41,13 +45,7 @@ const links = document.querySelectorAll(".link");
 const tabs = document.querySelectorAll(".tab");
 const homeTab = document.querySelector(".home");
 
-const pages = [
-  "System information",
-  "Keyboard test",
-  "Display test",
-  "Battery test",
-  "About",
-];
+const pages = ["System info", "Keyboard", "Display", "Battery", "About"];
 const titleIndicator = document.querySelector(".title-indicator h1");
 
 links.forEach((link, index) => {
@@ -89,10 +87,14 @@ const video1 = document.querySelector(".video-1");
 const video2 = document.querySelector(".video-2");
 
 video1.addEventListener("click", () => {
-  shell.openExternal("https://www.youtube.com/watch?v=7PIji8OubXU&t=53s&ab_channel=8KEarth");
+  shell.openExternal(
+    "https://www.youtube.com/watch?v=7PIji8OubXU&t=53s&ab_channel=8KEarth"
+  );
 });
 video2.addEventListener("click", () => {
-  shell.openExternal("https://www.youtube.com/watch?v=LXb3EKWsInQ&ab_channel=Jacob%2BKatieSchwarz");
+  shell.openExternal(
+    "https://www.youtube.com/watch?v=LXb3EKWsInQ&ab_channel=Jacob%2BKatieSchwarz"
+  );
 });
 
 /*------ Open links in browser ------*/

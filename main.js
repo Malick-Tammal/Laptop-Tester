@@ -40,20 +40,8 @@ const createMainWin = () => {
   // Dev tools
   if (isDev) mainWin.webContents.openDevTools({ mode: "detach" });
 
-  mainWin.on("ready-to-show", () => {
-    mainWin.show();
-    console.timeEnd("app_startup_time");
-  });
-
-  /*------ Sending app name and pc username and app version to renderer process ------*/
-  mainWin.webContents.on("did-finish-load", () => {
-    mainWin.webContents.send("app_name", { title: appName });
-    mainWin.webContents.send("user_name", { userName: os.userInfo().username });
-    mainWin.webContents.send("app_version", { appVersion: app.getVersion() });
-  });
-
   /*------ Mem garbage collection ------*/
-  mainWin.on("closed", () => {
+  mainWin.on("close", () => {
     mainWin = null;
   });
 
@@ -67,14 +55,57 @@ const createMainWin = () => {
   });
 };
 
+let splashWin;
+
+const createSplashWin = () => {
+  splashWin = new BrowserWindow({
+    minWidth: 1000,
+    minHeight: 600,
+    width: 1000,
+    height: 600,
+    title: appName,
+    icon: path.join(__dirname, "./asset/photos/icon.ico"),
+    frame: false,
+    resizable: false,
+    show: false,
+  });
+
+  splashWin.loadFile("./src/splash.html");
+
+  splashWin.on("ready-to-show", () => {
+    splashWin.show();
+    console.timeEnd("app_startup_time");
+  });
+
+  /*------ Mem garbage collection ------*/
+  splashWin.on("close", () => {
+    splashWin = null;
+  });
+};
+
 /*------ Creating window when app started ------*/
 app.whenReady().then(() => {
+  createSplashWin();
   createMainWin();
 });
 
 /*------ App quit functions------*/
 app.on("window-all-closed", () => {
   app.quit();
+});
+
+app.on("ready", () => {
+  setTimeout(() => {
+    mainWin.show();
+    splashWin.close();
+  }, 3000);
+});
+
+/*------ Sending app name and pc username and app version to renderer process ------*/
+ipc.on("get_data", (event) => {
+  event.sender.send("app_name", { title: appName });
+  event.sender.send("user_name", { userName: os.userInfo().username });
+  event.sender.send("app_version", { appVersion: app.getVersion() });
 });
 
 /*------ Close / Minimize / Maximize functions ------*/
