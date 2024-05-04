@@ -531,7 +531,7 @@ td.part img {
   align-items: center;
   justify-content: center;
 }
-.bat-info-container .col-1 {
+.bat-info-container .col  {
   width: 50%;
   height: 80%;
   display: none;
@@ -542,7 +542,7 @@ td.part img {
   top: 50%;
   transform: translate(-50%, -50%);
 }
-.bat-info-container .col-1.show {
+.bat-info-container .col.show {
   display: flex;
 }
 .bat-info-container table {
@@ -562,112 +562,6 @@ td.part img {
 .bat-info-data span {
   color: var(--light-green);
 }
-.bat-info-container .col-2 {
-  width: 60%;
-  height: 92%;
-  position: absolute;
-  display: none;
-  overflow: hidden;
-  border-radius: 0.5rem;
-}
-.bat-info-container .col-2.show {
-  display: unset;
-}
-.bat-info-container .col-2 .con-1 {
-  width: 100%;
-  height: 10%;
-  background-color: var(--very-dark-blue);
-  margin-bottom: 0.3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.bat-info-container .col-2 .con-1 h1 {
-  font-size: 1rem;
-  font-family: "Poppins-Semibold";
-}
-.bat-info-container .col-2 .con-1 h1 span {
-  color: var(--light-green);
-}
-.bat-info-container .col-2 .con-2 {
-  width: 100%;
-  height: 10%;
-  background-color: var(--very-dark-blue);
-  margin-bottom: 0.3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.bat-info-container .col-2 .con-2 h1 {
-  font-size: 1rem;
-  font-family: "Poppins-Semibold";
-}
-.bat-info-container .col-2 .con-2 h1 span {
-  color: var(--light-green);
-}
-.bat-info-container .col-2 .con-3 {
-  width: 100%;
-  height: 80%;
-  background-color: var(--very-dark-blue);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  padding: 0rem 3rem 0rem 3rem;
-  text-align: center;
-}
-.bat-info-container .col-2 .con-3 h2 {
-  font-family: "Poppins-Semibold";
-}
-.bat-info-container .col-2 .con-3 p {
-  font-size: 0.9rem;
-}
-.result-health {
-  font-family: 1rem;
-  font-family: "Poppins-Semibold";
-}
-.result-health span {
-  color: var(--light-green);
-}
-.bat-info-container .col-2 .con-3 form {
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-}
-.bat-info-container .col-2 .con-3 form input::-webkit-outer-spin-button,
-.bat-info-container .col-2 .con-3 form input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-.bat-info-container .col-2 .con-3 form input {
-  outline: none;
-  border: none;
-  background: var(--dark-blue);
-  padding: 1rem;
-  margin: 0.3rem;
-  color: var(--white);
-  font-family: "Poppins-Semibold";
-  border-radius: 0.3rem;
-}
-.bat-info-container .col-2 .con-3 form input::placeholder {
-  color: #ffffff6e;
-}
-.btns {
-  display: flex;
-  justify-content: space-evenly;
-  margin-top: 0.4rem;
-}
-.btns a {
-  color: var(--light-green);
-  border: 3px solid var(--light-green);
-  padding: 0.2rem 1rem;
-  border-radius: 0.4rem;
-  transition: all 200ms ease-in-out;
-}
-.btns a:hover {
-  background-color: var(--light-green);
-  color: var(--white);
-}
 .bat-loading {
   width: 100%;
   height: 100%;
@@ -683,28 +577,7 @@ td.part img {
 .bat-loading.hide {
   display: none;
 }
-.bat-show-more {
-  width: 2rem;
-  height: 2rem;
-  position: absolute;
-  right: 1rem;
-  bottom: 1rem;
-  cursor: pointer;
-  display: none;
-}
-.bat-show-more.show {
-  display: unset;
-}
-.bat-show-more svg {
-  width: 100%;
-  height: 100%;
-}
-.bat-show-more svg path {
-  transition: all 300ms ease-in-out;
-}
-.bat-show-more:hover > svg path {
-  fill: var(--light-green);
-}
+
 /*-------------------*/
 
 /*--- About-info-tab ---*/
