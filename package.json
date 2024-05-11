@@ -22,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Malick_Tammal/laptop-tester.git"
+    "url": "https://github.com/Malick-Tammal/laptop-tester.git"
   },
   "build": {
     "appId": "com.laptop-tester.app",
