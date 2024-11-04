@@ -24,14 +24,6 @@ const bytesToSize = (bytes) => {
   return `${(bytes / 1024 ** i).toFixed(1)} ${sizes[i]}`;
 };
 
-/*--- Getting app version / from main process ---*/
-const appVersionText = document.querySelectorAll(".app-version span");
-
-ipc.on("app_version", (event, data) => {
-  appVersionText.forEach((appVer) => {
-    appVer.innerText = `V${data.appVersion}`;
-  });
-});
 
 /*--- Adding back btn in update stages ---*/
 const UpdateBackBtn = document.querySelector(".back-btn");

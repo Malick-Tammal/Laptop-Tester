@@ -103,7 +103,7 @@ const mainSocialAll = [
   "https://www.instagram.com/malick_tammal",
   "https://laptop-tester.netlify.app",
   "https://www.facebook.com/abdelmalek.tammal",
-  "https://github.com/ADAMSKI-DZ/Laptop-Tester",
+  "https://github.com/Malick-Tammal/Laptop-Tester",
 ];
 
 socialLinksMainBtns.forEach(function fun(value, index) {
@@ -124,4 +124,19 @@ allAboutSocialBtns.forEach(function fun(value, index) {
   value.addEventListener("click", () => {
     shell.openExternal(aboutSocialAll[index]);
   });
+});
+
+const splash = document.querySelector(".splash");
+
+document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(() => {
+    splash.classList.add("hide");
+  }, 2000);
+});
+
+/*--- Getting app version / from main process ---*/
+const appVersionText = document.querySelector(".app-version span");
+
+ipc.on("app_version", (event, data) => {
+  appVersionText.innerText = `V${data.appVersion}`;
 });

@@ -17,7 +17,7 @@
     "Tool"
   ],
   "devDependencies": {
-    "electron": "^23.2.0",
+    "electron": "^23.3.13",
     "electron-builder": "^24.1.2"
   },
   "repository": {

@@ -22,6 +22,7 @@ nav.top-bar {
   padding: 0rem 0.7rem 0rem 0.7rem;
   grid-column: 1 / 3;
   grid-row: 1 / 2;
+  position: relative;
 }
 .logo {
   height: 100%;
@@ -36,15 +37,13 @@ nav.top-bar {
   -webkit-user-drag: none;
 }
 .logo h1 {
-  font-family: "Poppins-Semibold";
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   margin-left: 0.7rem;
   user-select: none;
+  letter-spacing: 1px;
 }
 .tasks {
   display: flex;
-  align-items: center;
-  justify-content: center;
   app-region: none;
 }
 .tasks .btns {
@@ -67,9 +66,16 @@ nav.top-bar {
 .tasks .btns:hover svg path {
   fill: var(--light-green);
 }
+.title-indicator {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
 .title-indicator h1 {
-  font-size: 1rem;
-  font-family: "Poppins-Semibold";
+  font-size: 0.9rem;
+  font-family: "Poppins-Regular";
+  letter-spacing: 1px;
 }
 /*--------------------------------------------*/
 
@@ -244,7 +250,7 @@ nav.top-bar {
 .home-container h1 {
   font-family: "Poppins-Light";
   font-size: 3rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 .home-container h1 .user-name {
   font-family: "Poppins-Semibold";
@@ -252,15 +258,20 @@ nav.top-bar {
 }
 .three-dots {
   width: 5rem;
+  opacity: 0.7;
 }
 .home-desc {
-  font-family: "Poppins-Regular";
+  font-family: "Poppins-Light";
   font-size: 1.1rem;
   line-height: 2.5rem;
+}
+.home-desc span {
+  color: var(--light-green);
 }
 .social-title {
   font-family: "Poppins-Light";
   font-size: 1.1rem;
+  letter-spacing: 1px;
 }
 .social-imgs {
   width: 100%;
@@ -307,6 +318,17 @@ nav.top-bar {
 }
 .overlay2 img {
   width: 100%;
+}
+.app-version {
+  position: absolute;
+  right: 1rem;
+  bottom: 0.5rem;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  font-family: "Poppins-Light";
+}
+.app-version span {
+  color: var(--light-green);
 }
 /*-------------------*/
 /*--- System-info-tab ---*/
@@ -531,7 +553,7 @@ td.part img {
   align-items: center;
   justify-content: center;
 }
-.bat-info-container .col  {
+.bat-info-container .col {
   width: 50%;
   height: 80%;
   display: none;
@@ -973,3 +995,27 @@ td.part img {
 }
 /*-------------------*/
 /*--------------------------------------------*/
+
+/*- Splash screen styling -*/
+.splash {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background-color: var(--very-dark-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  app-region: drag;
+  z-index: 9999;
+}
+.splash img {
+  mix-blend-mode: screen;
+  width: 10%;
+}
+
+.splash.hide {
+  display: none;
+}
+
+/*-------------------*/

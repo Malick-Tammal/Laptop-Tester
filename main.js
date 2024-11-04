@@ -28,7 +28,6 @@ const createMainWin = () => {
     resizable: true,
     frame: false,
     fullscreenable: true,
-    show: false,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -55,50 +54,14 @@ const createMainWin = () => {
   });
 };
 
-let splashWin;
-
-const createSplashWin = () => {
-  splashWin = new BrowserWindow({
-    minWidth: 1000,
-    minHeight: 600,
-    width: 1000,
-    height: 600,
-    title: appName,
-    icon: path.join(__dirname, "./asset/photos/icon.ico"),
-    frame: false,
-    resizable: false,
-    show: false,
-  });
-
-  splashWin.loadFile("./src/splash.html");
-
-  splashWin.on("ready-to-show", () => {
-    splashWin.show();
-    console.timeEnd("app_startup_time");
-  });
-
-  /*------ Mem garbage collection ------*/
-  splashWin.on("close", () => {
-    splashWin = null;
-  });
-};
-
 /*------ Creating window when app started ------*/
 app.whenReady().then(() => {
-  createSplashWin();
   createMainWin();
 });
 
 /*------ App quit functions------*/
 app.on("window-all-closed", () => {
   app.quit();
-});
-
-app.on("ready", () => {
-  setTimeout(() => {
-    mainWin.show();
-    splashWin.close();
-  }, 3000);
 });
 
 /*------ Sending app name and pc username and app version to renderer process ------*/
