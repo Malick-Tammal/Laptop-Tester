@@ -45,7 +45,13 @@ const links = document.querySelectorAll(".link");
 const tabs = document.querySelectorAll(".tab");
 const homeTab = document.querySelector(".home");
 
-const pages = ["System info", "Keyboard", "Display", "Battery", "About"];
+const pages = [
+  "System information",
+  "Keyboard Test",
+  "Display Test",
+  "Battery Test",
+  "About",
+];
 const titleIndicator = document.querySelector(".title-indicator h1");
 
 links.forEach((link, index) => {

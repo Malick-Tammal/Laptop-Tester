@@ -420,12 +420,10 @@ td.part img {
 }
 .dis-test-container .col-1 h1,
 .dis-test-container .col-2 h1 {
-  font-size: 1.5rem;
-}
-.dis-test-container .col-1 h3,
-.dis-test-container .col-2 h3 {
-  font-size: 1rem;
-  font-family: "Poppins-Medium";
+  font-size: 1.4rem;
+  position: relative;
+  top: -2rem;
+  letter-spacing: 0.5px;
 }
 .videos-content-row {
   width: 100%;
@@ -459,14 +457,17 @@ td.part img {
   font-size: 0.9rem;
   width: fit-content;
 }
-.dis-test-container .col-1 p {
+.dis-test-container p {
+  opacity: 85%;
+}
+p.desc {
+  font-family: "Poppins-Light";
+  font-size: 1.1rem;
+}
+.videos-content-row p {
   margin-left: 1.5rem;
   text-align: left;
-}
-.dis-test-container .col-1 p,
-.dis-test-container .col-2 p {
-  font-family: "Poppins-Light";
-  font-size: 0.9rem;
+  font-size: 0.83rem;
 }
 .dis-test-container a {
   transition: all 200ms ease-in-out;
@@ -501,7 +502,7 @@ td.part img {
   visibility: visible;
 }
 .page-2 p {
-  font-family: "Poppins-Medium" !important;
+  font-family: "Poppins-Light";
 }
 .display-test {
   width: 100%;

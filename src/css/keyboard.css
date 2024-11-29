@@ -3,7 +3,7 @@
 .tab.key-test {
   flex-direction: column;
   align-items: unset;
-  padding: 0rem 4rem 2rem 4rem;
+  padding: 0rem 3rem 2rem 3rem;
   text-align: center;
 }
 #load-up {
@@ -17,7 +17,7 @@
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 #load-down {
   opacity: 0;
@@ -63,12 +63,13 @@ use.activate {
   line-height: 60px;
   color: var(--light-green);
   font-family: "Poppins-Semibold";
+  margin-left: 1rem;
 }
 #keys-frame {
   min-width: 350px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-top: 1rem;
   line-height: 2rem;
 }
@@ -149,13 +150,13 @@ input:checked + .slider:before {
 .clear-all {
   position: relative;
   top: 2rem;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 .clear-all a {
   text-decoration: none;
   color: #fff;
   background: #1abc9c;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   border-radius: 0.3rem;
   transition: all 200ms ease-in-out;
   font-size: 0.9rem;
