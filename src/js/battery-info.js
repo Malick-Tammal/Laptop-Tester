@@ -13,35 +13,38 @@ const isCharging = (answer) => {
   }
 };
 
-/*------ Showing battery infos ------*/
-const checkBatteryInfo = () => {
-  const battery = require("battery");
+/*------ Getting battery infos ------*/
+const checkBatteryInfo = async () => {
   const bu = require("battery_util");
 
-  bu.batteryData()
+  console.log("Getting battery data...");
+
+  const batteryInfo = () => bu.batteryInfo();
+  const batteryState = await bu.batteryState();
+
+  await batteryInfo()
     .then((data) => {
-      setInterval(() => {
-        (async () => {
-          const { level, charging } = await battery();
-          batInfoData[0].innerText = isCharging(charging);
-          batInfoData[1].innerText = `${level * 100}%`;
-        })();
-      }, 1000);
+      console.log("-----Battery_info-----");
+      console.log(data);
+
+      batInfoData[2].innerText = `${data.health}%`;
+      batInfoData[3].innerText = `${data.designCapacity} ${data.measureUnit}`;
+      batInfoData[4].innerText = `${data.fullChargeCapacity} ${data.measureUnit}`;
 
       setTimeout(() => {
         batLoading.classList.add("hide");
         batCol.classList.add("show");
-      }, 1500);
-
-      batInfoData[2].innerText = `${data.health}%`;
-
-      batInfoData[3].innerText = `${data.designCapacity} ${data.measureUnit}`;
-
-      batInfoData[4].innerText = `${data.fullChargeCapacity} ${data.measureUnit}`;
+      }, 500);
     })
-    .catch((err) => {
-      batInfoData[0].innerText = err;
-    });
+    .catch((err) => console.log(err));
+
+  setInterval(() => {
+    console.log("-----Battery_state-----");
+    console.log(batteryState);
+
+    batInfoData[0].innerText = isCharging(batteryState.isCharging);
+    batInfoData[1].innerText = `${batteryState.level}%`;
+  }, 1000);
 };
 
 /*------ Waiting click on battery tab then getting battery info // for performance ------*/
