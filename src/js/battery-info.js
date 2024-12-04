@@ -20,7 +20,15 @@ const checkBatteryInfo = async () => {
   console.log("Getting battery data...");
 
   const batteryInfo = () => bu.batteryInfo();
-  const batteryState = await bu.batteryState();
+
+  setInterval(async () => {
+    const batteryState = await bu.batteryState();
+    console.log("-----Battery_state-----");
+    console.log(batteryState);
+
+    batInfoData[0].innerText = isCharging(batteryState.isCharging);
+    batInfoData[1].innerText = `${batteryState.level}%`;
+  }, 1000);
 
   await batteryInfo()
     .then((data) => {
@@ -37,14 +45,6 @@ const checkBatteryInfo = async () => {
       }, 500);
     })
     .catch((err) => console.log(err));
-
-  setInterval(() => {
-    console.log("-----Battery_state-----");
-    console.log(batteryState);
-
-    batInfoData[0].innerText = isCharging(batteryState.isCharging);
-    batInfoData[1].innerText = `${batteryState.level}%`;
-  }, 1000);
 };
 
 /*------ Waiting click on battery tab then getting battery info // for performance ------*/
