@@ -56,7 +56,7 @@
 
 # Usage
 
-Download the app [Latest release!](https://github.com/Malick-Tammal/Laptop-Tester/releases/download/v1.0.0/laptop-tester-Setup-1.0.0.exe)
+Download the app [Latest release!](https://github.com/Malick-Tammal/Laptop-Tester/releases/download/v1.1.0/laptop-tester-Setup-1.0.0.exe)
 
 for devs clone the repository
 

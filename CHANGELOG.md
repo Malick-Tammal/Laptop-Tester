@@ -19,5 +19,5 @@
 
 | Version |    Date   | Comment                                                                                               |
 | ------- | --------- | ----------------------------------------------------------------------------------------------------- |
-|  1.1.0  | 2024-4-24 | Enhancing UI, Updating packages, Fixing battery tab, Addign batter system to get laptop specification |
+|  1.1.0  | 2024-4-24 | Enhancing UI, Updating packages, Fixing battery tab, Adding better system to get laptop specification |
 |  1.0.0  | 2024-4-24 | Initial release                                                                                       |
