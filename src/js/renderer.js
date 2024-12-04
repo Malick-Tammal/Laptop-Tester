@@ -121,9 +121,9 @@ socialLinksMainBtns.forEach(function fun(value, index) {
 const allAboutSocialBtns = document.querySelectorAll(".about-link");
 const aboutSocialAll = [
   "https://www.instagram.com/malick_tammal",
-  "https://github.com/ADAMSKI-DZ",
+  "https://github.com/malick-tammal",
   "https://www.facebook.com/abdelmalek.tammal",
-  "https://codepen.io/ADAMSKIDZ",
+  "https://codepen.io/malick_tammal",
   "https://malicktammal.netlify.app/",
 ];
 allAboutSocialBtns.forEach(function fun(value, index) {

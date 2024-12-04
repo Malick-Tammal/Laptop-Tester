@@ -399,6 +399,9 @@ td.part img {
   display: flex;
   justify-content: space-between;
 }
+.col-1 {
+  padding: 2rem;
+}
 .dis-test-container .col-1,
 .dis-test-container .col-2 {
   width: 45%;
@@ -413,16 +416,13 @@ td.part img {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  justify-content: space-around;
-  padding: 2rem;
+  justify-content: space-between;
   overflow: hidden;
   position: relative;
 }
 .dis-test-container .col-1 h1,
 .dis-test-container .col-2 h1 {
   font-size: 1.4rem;
-  position: relative;
-  top: -2rem;
   letter-spacing: 0.5px;
 }
 .videos-content-row {
@@ -484,8 +484,9 @@ p.desc {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   position: absolute;
+  top: 0;
   padding: 2rem;
   transition: all 200ms ease-in-out;
 }
