@@ -1,6 +1,3 @@
-/*------ Importing system information package ------*/
-const si = require("systeminformation");
-
 /*------ Getting system infos / adding loading animation ------*/
 const specs = document.querySelectorAll(".spec");
 const sysContainer = document.querySelector(".system-container");
@@ -13,96 +10,90 @@ function convertToGB(bytesValue) {
 }
 
 /*------ When link pressed get system info / ? for quick startup ------*/
-const checkPcInfo = () => {
-  si.osInfo()
-    .then((data) => {
-      /*---- OS data ----*/
+const checkPcInfo = async () => {
+  /*------ Importing system information package ------*/
+  const si = require("systeminformation");
 
-      specs[0].innerText = `${data.distro} ${data.arch} Build ${data.build}`;
-    })
-    .catch((err) => {
-      specs[0].innerText = err;
-    });
+  console.log("Getting system data...");
 
-  si.cpu()
-    .then((data) => {
-      /*---- CPU data ----*/
+  /*---- OS info ----*/
+  console.log("-----OS_INFO-----");
+  const os = await si.osInfo();
+  specs[0].innerText = `${os.distro} ${os.arch} Build ${os.build}`;
+  console.log(os);
+  console.log("------------------------------------");
 
-      specs[1].innerText = `${data.manufacturer} ${data.brand} ${data.speed}GHZ ${data.physicalCores} Cores`;
-    })
-    .catch((err) => {
-      specs[1].innerText = err;
-    });
+  /*---- CPU info ----*/
+  console.log("-----CPU_INFO-----");
+  const cpu = await si.cpu();
+  specs[1].innerText = `${cpu.manufacturer} ${cpu.brand} ${cpu.speed}GHZ ${cpu.physicalCores} Cores`;
+  console.log(cpu);
+  console.log("------------------------------------");
 
-  si.memLayout()
-    .then((data) => {
-      /*---- RAM data ----*/
+  /*---- RAM info ----*/
+  console.log("-----RAM_INFO-----");
+  const ram = await si.memLayout();
+  if (ram.length === 1) {
+    specs[2].innerText = `Slot 1 : ${convertToGB(ram[0].size)}GB ${
+      ram[0].type
+    } ${ram[0].clockSpeed}MHZ ${ram[0].manufacturer}`;
+  } else {
+    specs[2].innerText = `Slot 1 : ${convertToGB(ram[0].size)}GB ${
+      ram[0].type
+    } ${ram[0].clockSpeed}MHZ ${ram[0].manufacturer} | Slot 2 : ${convertToGB(
+      ram[1].size
+    )}GB ${ram[1].type} ${ram[1].clockSpeed}MHZ ${ram[1].manufacturer}`;
+  }
+  console.log(ram);
+  console.log("------------------------------------");
 
-      if (data.length === 1) {
-        specs[2].innerText = `Slot 1 : ${convertToGB(data[0].size)}GB ${
-          data[0].type
-        } ${data[0].clockSpeed}MHZ ${data[0].manufacturer}`;
-      } else {
-        specs[2].innerText = `Slot 1 : ${convertToGB(data[0].size)}GB ${
-          data[0].type
-        } ${data[0].clockSpeed}MHZ ${
-          data[0].manufacturer
-        } | Slot 2 : ${convertToGB(data[1].size)}GB ${data[1].type} ${
-          data[1].clockSpeed
-        }MHZ ${data[1].manufacturer}`;
-      }
-    })
-    .catch((err) => {
-      specs[2].innerText = err;
-    });
+  /*---- GPU info ----*/
+  console.log("-----GPU_INFO-----");
+  const gpu = await si.graphics();
+  if (gpu.controllers.length === 1) {
+    specs[3].innerText = `GPU 1 : ${
+      gpu.controllers[0].model
+    } Vram ${convertToGB(gpu.controllers[0].vram * 1000000)}GB ${
+      gpu.controllers[0].bus
+    }`;
+  }
+  if (gpu.controllers.length === 2) {
+    specs[3].innerText = `GPU 1 : ${
+      gpu.controllers[0].model
+    } Vram ${convertToGB(gpu.controllers[0].vram * 1000000)}GB ${
+      gpu.controllers[0].bus
+    } | GPU 2 : ${gpu.controllers[1].model} Vram ${convertToGB(
+      gpu.controllers[1].vram * 1000000
+    )}GB ${gpu.controllers[1].bus}`;
+  }
+  console.log(gpu);
+  console.log("------------------------------------");
 
-  si.graphics()
-    .then((data) => {
-      /*---- GPU data ----*/
+  /*---- DISK info ----*/
+  console.log("-----DISK_INFO-----");
+  const disk = await si.diskLayout();
+  if (disk.length === 1) {
+    specs[4].innerText = `Disk 1 : ${convertToGB(disk[0].size)}GB ${
+      disk[0].type
+    } ${disk[0].vendor} ${disk[0].interfaceType}`;
+  }
+  if (disk.length === 2) {
+    specs[4].innerText = `Disk 1 : ${convertToGB(disk[0].size)}GB ${
+      disk[0].type
+    } ${disk[0].vendor} ${disk[0].interfaceType} | Disk 2 : ${convertToGB(
+      disk[1].size
+    )}GB ${disk[1].type} ${disk[1].vendor} ${disk[1].interfaceType}`;
+  }
 
-      if (data.controllers.length === 1) {
-        specs[3].innerText = `GPU 1 : ${
-          data.controllers[0].model
-        } Vram ${convertToGB(data.controllers[0].vram * 1000000)}GB ${
-          data.controllers[0].bus
-        }`;
-      }
-      if (data.controllers.length === 2) {
-        specs[3].innerText = `GPU 1 : ${
-          data.controllers[0].model
-        } Vram ${convertToGB(data.controllers[0].vram * 1000000)}GB ${
-          data.controllers[0].bus
-        } | GPU 2 : ${data.controllers[1].model} Vram ${convertToGB(
-          data.controllers[1].vram * 1000000
-        )}GB ${data.controllers[1].bus}`;
-      }
-    })
-    .catch((err) => {
-      specs[3].innerText = err;
-    });
+  sysContainer.classList.add("show");
+  sysInfoLoading.classList.remove("show");
+  console.log(disk);
+  console.log("------------------------------------");
 
-  si.diskLayout()
-    .then((data) => {
-      /*---- DISK data ----*/
-
-      if (data.length === 1) {
-        specs[4].innerText = `Disk 1 : ${convertToGB(data[0].size)}GB ${
-          data[0].type
-        } ${data[0].vendor} ${data[0].interfaceType}`;
-      }
-      if (data.length === 2) {
-        specs[4].innerText = `Disk 1 : ${convertToGB(data[0].size)}GB ${
-          data[0].type
-        } ${data[0].vendor} ${data[0].interfaceType} | Disk 2 : ${convertToGB(
-          data[1].size
-        )}GB ${data[1].type} ${data[1].vendor} ${data[1].interfaceType}`;
-      }
-      sysContainer.classList.add("show");
-      sysInfoLoading.classList.remove("show");
-    })
-    .catch((err) => {
-      specs[4].innerText = err;
-    });
+  setTimeout(() => {
+    sysContainer.classList.add("show");
+    sysInfoLoading.classList.remove("show");
+  }, 300);
 };
 
 links[0].addEventListener(

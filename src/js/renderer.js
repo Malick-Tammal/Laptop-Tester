@@ -133,9 +133,11 @@ allAboutSocialBtns.forEach(function fun(value, index) {
 });
 
 const splash = document.querySelector(".splash");
+const container = document.querySelector(".container");
 
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
+    container.classList.remove("hide");
     splash.classList.add("hide");
   }, 2000);
 });
