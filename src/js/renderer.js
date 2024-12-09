@@ -142,9 +142,4 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 2000);
 });
 
-/*--- Getting app version / from main process ---*/
-const appVersionText = document.querySelector(".app-version span");
 
-ipc.on("app_version", (event, data) => {
-  appVersionText.innerText = `V${data.appVersion}`;
-});

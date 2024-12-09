@@ -24,7 +24,6 @@ const bytesToSize = (bytes) => {
   return `${(bytes / 1024 ** i).toFixed(1)} ${sizes[i]}`;
 };
 
-
 /*--- Adding back btn in update stages ---*/
 const UpdateBackBtn = document.querySelector(".back-btn");
 
@@ -177,4 +176,13 @@ ipc.on("update_error", (event, data) => {
   let updateError = data.error;
   errorText.innerText = updateError;
   console.log(updateError);
+});
+
+/*--- Getting app version / from main process ---*/
+const appVersionDOM = document.querySelectorAll(".app-version span");
+
+ipc.on("app_version", (event, data) => {
+  appVersionDOM.forEach((version) => {
+    version.innerText = `V${data.appVersion}`;
+  });
 });

@@ -94,29 +94,7 @@ ipc.on("restore_screen", () => {
   mainWin.setFullScreen(false);
 });
 
-/*------ Generating battery report ------*/
-ipc.on("generate_battery_info", () => {
-  const exec = require("child_process").exec;
-
-  let setDesktopDir = os.userInfo().homedir + "\\Desktop";
-
-  function execute(command, callback) {
-    exec(command, (error, stdout, stderr) => {
-      callback(stdout);
-    });
-  }
-
-  execute(
-    `cd ${setDesktopDir} && powercfg /batteryreport && start battery-report.html`,
-    (output) => {
-      console.log(output);
-      console.log(setDesktopDir);
-    }
-  );
-});
-
 /*------ Update system ------*/
-
 autoUpdater.autoDownload = false;
 
 ipc.on("app_is_online", () => {
