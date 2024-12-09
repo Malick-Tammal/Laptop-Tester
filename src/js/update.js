@@ -66,7 +66,7 @@ ipc.on("no_update_available", () => {
 });
 
 /*--- Update available ---*/
-const updateVersionText = document.querySelector(".update-version span");
+const updateVersionDom = document.querySelectorAll(".update-version span");
 const updateReleaseDate = document.querySelector(".update-release-date span");
 
 ipc.on("update_available", (event, data) => {
@@ -85,8 +85,10 @@ ipc.on("update_available", (event, data) => {
   });
   updateStage[3].classList.add("active");
 
-  updateVersionText.innerText = `V${data.updateVersion}`;
-  updateReleaseDate.innerText = `${data.releaseDate}`;
+  updateVersionDom.forEach((update) => {
+    update.innerText = `V${data.updateVersion}`;
+  });
+  updateReleaseDate.innerText = `${data.releaseDate.slice(0, 10)}`;
 });
 
 /*--- Download update when press btn ---*/
@@ -179,10 +181,15 @@ ipc.on("update_error", (event, data) => {
 });
 
 /*--- Getting app version / from main process ---*/
-const appVersionDOM = document.querySelectorAll(".app-version span");
+const appVersionDom = document.querySelector(".app-version span");
+const appVersionDomUpdate = document.querySelectorAll(
+  ".app-version-update span"
+);
 
 ipc.on("app_version", (event, data) => {
-  appVersionDOM.forEach((version) => {
+  appVersionDom.innerText = `V${data.appVersion}`;
+
+  appVersionDomUpdate.forEach((version) => {
     version.innerText = `V${data.appVersion}`;
   });
 });
