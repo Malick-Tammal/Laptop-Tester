@@ -8,7 +8,6 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const ipc = ipcMain;
 const { autoUpdater } = require("electron-updater");
-const os = require("os");
 
 /*------ Defining main window and app name ------*/
 const appName = "Laptop Tester";
@@ -66,6 +65,8 @@ app.on("window-all-closed", () => {
 
 /*------ Sending app name and pc username and app version to renderer process ------*/
 ipc.on("get_data", (event) => {
+  const os = require("os");
+
   event.sender.send("app_name", { title: appName });
   event.sender.send("user_name", { userName: os.userInfo().username });
   event.sender.send("app_version", { appVersion: app.getVersion() });
